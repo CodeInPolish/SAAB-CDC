@@ -160,11 +160,13 @@ void RN52impl::initialize() {
         case 38 ... 52:                             // PCBs v3.3A, v4.1 or v4.2 (100K/5K Ohm network); TODO: make sure the correct resistors are soldered on!!!
             Serial.println(F("Hardware version: v3.3A/v4.1/v4.2"));
             digitalWrite(BT_PWREN_PIN,HIGH);
+//            configRN52postEnable = true;            // Can only enable this if v3.3A all have 9600_EN jumper shorted. Probably not the case.
             break;
         case 83 ... 97:                             // PCB v4.3 (100K/10K Ohm network)
             Serial.println(F("Hardware version: v4.3"));
             digitalWrite(SN_XCEIVER_RS_PIN,LOW);    // This pin needs to be pulled low, otherwise SN65HVD251D CAN transciever goes into sleep mode
             digitalWrite(BT_PWREN_PIN,HIGH); // RN52 will not be restartable if rebooted with PWREN low. No point in pulling low again. According to RN52 DS70005120A p14 (section 2.5), cannot power down vreg.
+            configRN52postEnable = true;
             break;
         case 161 ... 175:                           // PCB v5.0 (100K/20K Ohm network)
             Serial.println(F("Hardware version: v5.0"));

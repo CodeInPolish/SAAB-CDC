@@ -486,6 +486,7 @@
 		};
 		A80EF3721B2244E900BF40A6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A80EF31A1B2244E900BF40A6 /* Arduino Uno.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
