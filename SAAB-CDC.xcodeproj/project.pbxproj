@@ -118,6 +118,10 @@
 		A8E261F21C6162A0009BEB39 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		A8E261F31C6162A0009BEB39 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		A8E261F41C6162A0009BEB39 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		A8F66F351EC6DD3400ECB240 /* Scroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scroller.cpp; sourceTree = "<group>"; };
+		A8F66F361EC6DD3400ECB240 /* Scroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroller.h; sourceTree = "<group>"; };
+		A8F66F371EC6DD3400ECB240 /* SidResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SidResource.cpp; sourceTree = "<group>"; };
+		A8F66F381EC6DD3400ECB240 /* SidResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidResource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -140,15 +144,17 @@
 		A80EF2FC1B2244E800BF40A6 /* SAAB-CDC */ = {
 			isa = PBXGroup;
 			children = (
+				A80EF2FF1B2244E800BF40A6 /* Makefile */,
 				A82B27921B2263DC009B19C3 /* CAN.cpp */,
 				A82B27961B22649F009B19C3 /* CDC.cpp */,
 				A8E261F11C6162A0009BEB39 /* Event.cpp */,
 				A80EF2FD1B2244E800BF40A6 /* main.cpp */,
-				A80EF2FF1B2244E800BF40A6 /* Makefile */,
 				A8B6C0641DED512D005E7E93 /* MessageSender.cpp */,
-				A85D26F61CE3E76B002FE52C /* RN52handler.cpp */,
 				A8CE2F311BB61A84001E71F0 /* RN52driver.cpp */,
+				A85D26F61CE3E76B002FE52C /* RN52handler.cpp */,
 				A85D26F31CE2B1DD002FE52C /* RN52impl.cpp */,
+				A8F66F351EC6DD3400ECB240 /* Scroller.cpp */,
+				A8F66F371EC6DD3400ECB240 /* SidResource.cpp */,
 				A8DB13771C612FC500DA6CF7 /* SoftwareSerial.cpp */,
 				A8E261F31C6162A0009BEB39 /* Timer.cpp */,
 				A82B27931B2263DC009B19C3 /* CAN.h */,
@@ -156,11 +162,13 @@
 				A8E261F21C6162A0009BEB39 /* Event.h */,
 				A8B6C0631DED43B8005E7E93 /* MessageSender.h */,
 				A82B27941B2263DC009B19C3 /* pinout.h */,
-				A85D26F71CE3E76B002FE52C /* RN52handler.h */,
 				A82E7D0F1CDC412600BC91BA /* RN52configuration.h */,
 				A8CE2F301BB61A3E001E71F0 /* RN52driver.h */,
+				A85D26F71CE3E76B002FE52C /* RN52handler.h */,
 				A85D26F41CE2B1DD002FE52C /* RN52impl.h */,
 				A82E7D101CDC412600BC91BA /* RN52strings.h */,
+				A8F66F361EC6DD3400ECB240 /* Scroller.h */,
+				A8F66F381EC6DD3400ECB240 /* SidResource.h */,
 				A8DB13781C612FC500DA6CF7 /* SoftwareSerial.h */,
 				A8E261F41C6162A0009BEB39 /* Timer.h */,
 				A80EF3701B2244E900BF40A6 /* SAAB-CDC.ino */,
@@ -362,7 +370,7 @@
 			name = Fast;
 			passBuildSettingsInEnvironment = 1;
 			productName = Fast;
-			};
+		};
 		BBBB170216110647BB000002 /* Make */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = make;
@@ -376,7 +384,7 @@
 			name = Make;
 			passBuildSettingsInEnvironment = 1;
 			productName = Make;
-			};
+		};
 		BBBB170216110647BB000003 /* Style */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = style;
@@ -390,7 +398,7 @@
 			name = Style;
 			passBuildSettingsInEnvironment = 1;
 			productName = Style;
-			};
+		};
 		BBBB170216110647BB000004 /* Document */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = document;
@@ -404,7 +412,7 @@
 			name = Document;
 			passBuildSettingsInEnvironment = 1;
 			productName = Document;
-			};
+		};
 		BBBB170216110647BB000005 /* Distribute */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = distribute;
@@ -418,7 +426,7 @@
 			name = Distribute;
 			passBuildSettingsInEnvironment = 1;
 			productName = Distribute;
-			};
+		};
 		BBBB170216110647BB000006 /* Debug */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = debug;
@@ -432,7 +440,7 @@
 			name = Debug;
 			passBuildSettingsInEnvironment = 1;
 			productName = Debug;
-			};
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -460,24 +468,6 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = SEK;
 				TargetAttributes = {
-					BBBB170216110647BB000001 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					BBBB170216110647BB000002 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					BBBB170216110647BB000003 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					BBBB170216110647BB000004 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					BBBB170216110647BB000005 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					BBBB170216110647BB000006 = {
-						CreatedOnToolsVersion = 6.1;
-					};
 					A80EF2F31B2244E800BF40A6 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -495,6 +485,24 @@
 					};
 					A80EF2F91B2244E800BF40A6 = {
 						CreatedOnToolsVersion = 6.3.2;
+					};
+					BBBB170216110647BB000001 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BBBB170216110647BB000002 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BBBB170216110647BB000003 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BBBB170216110647BB000004 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BBBB170216110647BB000005 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BBBB170216110647BB000006 = {
+						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
@@ -706,73 +714,73 @@
 			};
 			name = Release;
 		};
-		BB3B170216110647BB000001 /* Debug */ = {
+		BB3B170216110647BB000001 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		BB4B170216110647BB000001 /* Release */ = {
+		BB3B170216110647BB000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BB3B170216110647BB000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BB3B170216110647BB000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BB3B170216110647BB000005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BB3B170216110647BB000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BB4B170216110647BB000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		BB3B170216110647BB000002 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		BB4B170216110647BB000002 /* Release */ = {
+		BB4B170216110647BB000002 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		BB3B170216110647BB000003 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		BB4B170216110647BB000003 /* Release */ = {
+		BB4B170216110647BB000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		BB3B170216110647BB000004 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		BB4B170216110647BB000004 /* Release */ = {
+		BB4B170216110647BB000004 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		BB3B170216110647BB000005 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		BB4B170216110647BB000005 /* Release */ = {
+		BB4B170216110647BB000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		BB3B170216110647BB000006 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		BB4B170216110647BB000006 /* Release */ = {
+		BB4B170216110647BB000006 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -847,8 +855,8 @@
 		BB2B170216110647BB000001 /* Build configuration list for PBXLegacyTarget "Fast" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000001 /* Debug */,
-				BB4B170216110647BB000001 /* Release */,
+				BB3B170216110647BB000001 /* Release */,
+				BB4B170216110647BB000001 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -856,8 +864,8 @@
 		BB2B170216110647BB000002 /* Build configuration list for PBXLegacyTarget "Make" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000002 /* Debug */,
-				BB4B170216110647BB000002 /* Release */,
+				BB3B170216110647BB000002 /* Release */,
+				BB4B170216110647BB000002 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -865,8 +873,8 @@
 		BB2B170216110647BB000003 /* Build configuration list for PBXLegacyTarget "Style" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000003 /* Debug */,
-				BB4B170216110647BB000003 /* Release */,
+				BB3B170216110647BB000003 /* Release */,
+				BB4B170216110647BB000003 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -874,8 +882,8 @@
 		BB2B170216110647BB000004 /* Build configuration list for PBXLegacyTarget "Document" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000004 /* Debug */,
-				BB4B170216110647BB000004 /* Release */,
+				BB3B170216110647BB000004 /* Release */,
+				BB4B170216110647BB000004 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -883,8 +891,8 @@
 		BB2B170216110647BB000005 /* Build configuration list for PBXLegacyTarget "Distribute" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000005 /* Debug */,
-				BB4B170216110647BB000005 /* Release */,
+				BB3B170216110647BB000005 /* Release */,
+				BB4B170216110647BB000005 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -892,8 +900,8 @@
 		BB2B170216110647BB000006 /* Build configuration list for PBXLegacyTarget "Debug" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB3B170216110647BB000006 /* Debug */,
-				BB4B170216110647BB000006 /* Release */,
+				BB3B170216110647BB000006 /* Release */,
+				BB4B170216110647BB000006 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -902,4 +910,3 @@
 	};
 	rootObject = A80EF2EF1B2244E800BF40A6 /* Project object */;
 }
-
