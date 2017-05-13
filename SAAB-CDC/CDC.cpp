@@ -143,9 +143,10 @@ void CDChandler::handleRxFrame() {
                 handleSteeringWheelButtons();
                 break;
             case DISPLAY_RESOURCE_GRANT:
-                if (cdcActive) {
-					sidResource.grantReceived(CAN_RxMsg.data);
-                }
+                sidResource.grantReceived(CAN_RxMsg.data);
+                break;
+            case IHU_DISPLAY_RESOURCE_REQ:
+                sidResource.ihuRequestReceived(CAN_RxMsg.data);
                 break;
             default:
                 break;

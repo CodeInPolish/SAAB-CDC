@@ -23,6 +23,7 @@
 #include "SidResource.h"
 #include "CDC.h"
 #include "MessageSender.h"
+#include "Scroller.h"
 
 /**
  * Various constants used for SID text control
@@ -105,9 +106,20 @@ void SidResource::sendDisplayRequest() {
 }
 
 void SidResource::grantReceived(unsigned char data[]) {
-    if ((data[0] == 0x02) && (data[1] == NODE_SID_FUNCTION_ID)) {
-        // We have been granted write access on 2nd row of SID
-    	writeTextOnDisplay(MODULE_NAME, writeTextOnDisplayUpdateNeeded);
+    if (sidWriteAccessWanted) {
+        if ((data[0] == 0x02) && (data[1] == NODE_SID_FUNCTION_ID)) {
+            // We have been granted write access on 2nd row of SID
+            const char *buffer = scroller.get();
+            writeTextOnDisplay(buffer[0] ? buffer : MODULE_NAME, writeTextOnDisplayUpdateNeeded);
+        }
+    }
+}
+
+void SidResource::ihuRequestReceived(unsigned char data[]) {
+    if (sidWriteAccessWanted) {
+        if (data[2] == 0x03) { // IHU requested DriverBreakthrough
+            requestDriverBreakthrough();
+        }
     }
 }
 
@@ -123,13 +135,11 @@ void SidResource::writeTextOnDisplay(const char textIn[], boolean event) {
     }
     // Copy the provided string and make sure we have a new array of the correct length
     unsigned char textToSid[15];
-    int i, n;
-    n = strlen(textIn);
-    n = n > 12 ? 12 : n;      // 12 is the number of characters SID can display on each row; anything beyond 12 is going to be zeroed out
-    for (i = 0; i < n; i++) {
+    int n = strnlen(textIn, 12); // 12 is the number of characters SID can display on each row; anything beyond 12 is going to be zeroed out
+    for (int i = 0; i < n; i++) {
         textToSid[i] = textIn[i];
     }
-    for (i = n; i < 15; i++) {
+    for (int i = n; i < 15; i++) {
         textToSid[i] = 0;
     }
 
@@ -137,7 +147,7 @@ void SidResource::writeTextOnDisplay(const char textIn[], boolean event) {
     unsigned char sidMessageGroup[3][CAN_FRAME_LENGTH] = {
         {0x42,0x96,eventByte,textToSid[0],textToSid[1],textToSid[2],textToSid[3],textToSid[4]},
         {0x01,0x96,eventByte,textToSid[5],textToSid[6],textToSid[7],textToSid[8],textToSid[9]},
-        {0x00,0x96,eventByte,textToSid[11],textToSid[12],textToSid[13],textToSid[14]}
+        {0x00,0x96,eventByte,textToSid[10],textToSid[11],textToSid[12],textToSid[13],textToSid[14]}
     };
 
     messageSender.sendCanMessage(NODE_WRITE_TEXT_ON_DISPLAY,sidMessageGroup,3,10);

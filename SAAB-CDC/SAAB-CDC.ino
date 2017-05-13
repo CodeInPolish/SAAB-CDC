@@ -43,14 +43,10 @@ void setup() {
     Serial.println(F(" bytes"));
     Serial.println(F("Press H for Help"));
 #endif
-    Serial.println(F("Software version: v5.0b"));
+    Serial.println(F("Software version: v5.1b"));
     BT.initialize();
     CDC.openCanBus();
-#if (DEBUGMODE==1)
     wdt_enable(WDTO_500MS); // give the loop time to do more serial diagnostic logging.
-#else
-    wdt_enable(WDTO_30MS);
-#endif
 }
 
 void loop() {

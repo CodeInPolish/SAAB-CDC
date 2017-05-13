@@ -47,6 +47,7 @@ public:
 	}
 
 	void grantReceived(unsigned char data[]);
+	void ihuRequestReceived(unsigned char data[]);
 };
 
 extern SidResource sidResource;

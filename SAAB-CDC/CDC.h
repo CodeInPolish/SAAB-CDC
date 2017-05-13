@@ -51,6 +51,7 @@
 #define DISPLAY_RESOURCE_GRANT      0x368
 #define NODE_STATUS_RX_IHU          0x6A1
 #define STEERING_WHEEL_BUTTONS      0x290
+#define IHU_DISPLAY_RESOURCE_REQ	0x348
 
 /**
  * Timer definitions:
