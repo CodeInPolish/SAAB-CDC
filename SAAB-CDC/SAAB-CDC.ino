@@ -1,5 +1,5 @@
 /*
- BlueSaab v5.0b
+ BlueSaab v5.1.1b
 
  A CD changer emulator for older SAAB cars with RN52 Bluetooth module by Microchip Technology Inc.
  
@@ -43,10 +43,10 @@ void setup() {
     Serial.println(F(" bytes"));
     Serial.println(F("Press H for Help"));
 #endif
-    Serial.println(F("Software version: v5.1b"));
+    Serial.println(F("Software version: v5.1.1b"));
     BT.initialize();
     CDC.openCanBus();
-    wdt_enable(WDTO_500MS); // give the loop time to do more serial diagnostic logging.
+    wdt_enable(WDTO_500MS);
 }
 
 void loop() {

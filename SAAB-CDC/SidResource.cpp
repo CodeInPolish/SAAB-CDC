@@ -27,28 +27,12 @@
 
 /**
  * Various constants used for SID text control
- * Abbreviations:
- *      IHU - Infotainment Head Unit
- *      SPA - SAAB Park Assist
- *      EMS - Engine Management System
  */
 
-//#define NODE_APL_ADR                  0x11    // IHU
-//#define NODE_APL_ADR                  0x15    // "BlueSaab" custom
-//#define NODE_APL_ADR                  0x21    // ECS
-#define NODE_APL_ADR                    0x1F    // SPA
-//#define NODE_SID_FUNCTION_ID          0x17    // "BlueSaab" custom
-#define NODE_SID_FUNCTION_ID            0x12    // SPA
-//#define NODE_SID_FUNCTION_ID          0x19    // IHU
-//#define NODE_SID_FUNCTION_ID          0x32    // ECS
-//#define NODE_DISPLAY_RESOURCE_REQ     0x345   // "BlueSaab" custom
-//#define NODE_DISPLAY_RESOURCE_REQ     0x348   // IHU
-#define NODE_DISPLAY_RESOURCE_REQ       0x357   // SPA
-//#define NODE_DISPLAY_RESOURCE_REQ     0x358   // ECS
-//#define NODE_WRITE_TEXT_ON_DISPLAY    0x325   // "BlueSaab" custom
-//#define NODE_WRITE_TEXT_ON_DISPLAY    0x328   // IHU
-#define NODE_WRITE_TEXT_ON_DISPLAY      0x337   // SPA
-//#define NODE_WRITE_TEXT_ON_DISPLAY    0x33F   // ECS
+#define NODE_APL_ADR                    0x1F
+#define NODE_SID_FUNCTION_ID            0x12
+#define NODE_DISPLAY_RESOURCE_REQ       0x357
+#define NODE_WRITE_TEXT_ON_DISPLAY      0x337
 
 SidResource sidResource;
 
@@ -65,10 +49,9 @@ SidResource::~SidResource() {
 
 void SidResource::update() {
     if (sidDriverBreakthroughNeeded && (millis() - sidRequestLastSendTime > 100)) {
-        sidDriverBreakthroughNeeded = false;
         sendDisplayRequest();
+        sidDriverBreakthroughNeeded = false;
     }
-
     if (millis() - sidRequestLastSendTime > NODE_UPDATE_BASETIME) {
         sendDisplayRequest();
     }
@@ -92,7 +75,7 @@ void SidResource::sendDisplayRequest() {
     unsigned char displayRequestCmd[CAN_FRAME_LENGTH];
     displayRequestCmd[0] = NODE_APL_ADR;
     displayRequestCmd[1] = 0x02;
-    displayRequestCmd[2] = (sidWriteAccessWanted ? (sidDriverBreakthroughNeeded ? 0x03 : 0x05) : 0xFF);
+    displayRequestCmd[2] = (sidWriteAccessWanted ? (sidDriverBreakthroughNeeded ? 0x01 : 0x05) : 0xFF);
     displayRequestCmd[3] = NODE_SID_FUNCTION_ID;
     displayRequestCmd[4] = 0x00;
     displayRequestCmd[5] = 0x00;
@@ -117,7 +100,7 @@ void SidResource::grantReceived(unsigned char data[]) {
 
 void SidResource::ihuRequestReceived(unsigned char data[]) {
     if (sidWriteAccessWanted) {
-        if (data[2] == 0x03) { // IHU requested DriverBreakthrough
+        if ((data[0] == 0x11) && (data[3] == 0x19)) { // IHU requested DriverBreakthrough
             requestDriverBreakthrough();
         }
     }
