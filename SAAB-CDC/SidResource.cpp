@@ -95,12 +95,15 @@ void SidResource::grantReceived(unsigned char data[]) {
             const char *buffer = scroller.get();
             writeTextOnDisplay(buffer[0] ? buffer : MODULE_NAME, writeTextOnDisplayUpdateNeeded);
         }
+//        else if ((data[0] == 0x02) && (data[1] == 0x19)) {
+//            requestDriverBreakthrough();
+//        }
     }
 }
 
 void SidResource::ihuRequestReceived(unsigned char data[]) {
     if (sidWriteAccessWanted) {
-        if ((data[0] == 0x11) && (data[3] == 0x19)) { // IHU requested DriverBreakthrough
+        if ((data[2] == 0x03) || (data[2] == 0x05)) { // IHU requested DriverBreakthrough
             requestDriverBreakthrough();
         }
     }
