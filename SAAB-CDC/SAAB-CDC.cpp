@@ -2,7 +2,7 @@
  BlueSaab v5.1.1b
 
  A CD changer emulator for older SAAB cars with RN52 Bluetooth module by Microchip Technology Inc.
- 
+
  Credits:
 
  Hardware design:           Seth Evans (http://bluesaab.blogspot.com)
