@@ -101,6 +101,23 @@ void CANClass::begin(uint16_t speed)
              mcp2515_write_register(CNF2,0xBE);
              mcp2515_write_register(CNF3,0x04);
             /*
+	    Per the Microchip CAN Bit Timing Calculator software by www.intrepidcs.com, here are the settings we are using:
+	    16MHz Oscillator
+	    47.619 kBPS
+	    Baud Rate Prescaler (BRP-1): 7
+	    Time Quanta: 1
+	    
+	    Number of Time Quanta in one bit time: 21
+	    Propagation Delay (Tq): 7
+	    Phase Segment 1 (Tq): 8
+	    Phase Segment 2 (Tq): 5
+	    Syncro Jump Width (Tq): 4
+	    Not using Multiple Bit Sampling (SAM)
+	    Not using Wake Up Filter (WAKFIL)
+	    Sample Point: 76.2% of bit time
+	    */
+
+	    /*
              T1   = 16
              T2   = 5
              BTQ  = 21
